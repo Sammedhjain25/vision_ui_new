@@ -1,0 +1,126 @@
+/*
+ * Responsive Patch File
+ * Target Devices: Samsung Galaxy A51 (412x914), iPhone SE, iPhone XR, etc.
+ */
+
+/* 4. Wrap the whole page content in a responsive container when patching existing pages */
+.mobile-wrap {
+    width: 100%;
+    max-width: 412px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* 5. Add safe CSS utilities and reset rules for touch */
+img,
+svg,
+iframe,
+video,
+object,
+embed {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Replace any fixed-width tables with .table-wrap{overflow-x:auto} and table{min-width:100%} */
+.table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    min-width: 100%;
+}
+
+/* Schedule Dashed Line */
+.schedule-dashed-line {
+    width: 600px;
+}
+
+@media (max-width: 1024px) {
+    .schedule-dashed-line {
+        width: calc(100vw - 150px);
+    }
+}
+
+@media (max-width: 480px) {
+    .schedule-dashed-line {
+        width: calc(100vw - 100px);
+    }
+}
+
+/* Make buttons / inputs at least 44px tall in touch-area where relevant */
+button,
+input,
+select,
+textarea {
+    min-height: 44px;
+}
+
+/* 7. Ensure no horizontal scrolling anywhere */
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* 6. Add these key media query breakpoints (mobile-first) */
+
+/* ReferralTracking overrides */
+.referral-tracking-box {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.referral-tracking-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+/* Samsung A51 / small phones */
+@media (max-width: 412px) {
+    /* Priority device adjustments */
+}
+
+/* Small phones */
+@media (max-width: 480px) {}
+
+/* Tablets portrait */
+@media (max-width: 768px) {}
+
+/* Tablets landscape / small laptops */
+@media (max-width: 1024px) {}
+
+/* Desktop */
+@media (min-width: 1025px) {}
+
+/* Specific device breakpoints */
+@media (max-width: 360px) {
+    /* Galaxy S8+ */
+}
+
+@media (max-width: 375px) {
+    /* iPhone SE */
+}
+
+@media (max-width: 390px) {
+    /* iPhone 12 Pro */
+}
+
+@media (max-width: 414px) {
+    /* iPhone XR */
+}
+
+@media (max-width: 430px) {
+    /* iPhone 14 Pro Max */
+}
+
+@media (max-width: 834px) {
+    /* iPad Pro 11" */
+}
+
+@media (max-width: 1366px) {
+    /* iPad Pro 12.9" */
+}

@@ -1,0 +1,105 @@
+/*!
+
+=========================================================
+* Vision UI Free React - v1.0.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/vision-ui-free-react
+* Copyright 2021 Creative Tim (https://www.creative-tim.com/)
+* Licensed under MIT (https://github.com/creativetimofficial/vision-ui-free-react/blob/master LICENSE.md)
+
+* Design and Coded by Simmmple & Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+
+// react-router-dom components
+import { Link } from "react-router-dom";
+
+// prop-types is a library for typechecking of props.
+import PropTypes from "prop-types";
+
+// @mui material components
+import { Breadcrumbs as MuiBreadcrumbs } from "@mui/material";
+import Icon from "@mui/material/Icon";
+
+// Vision UI Dashboard React components
+import VuiBox from "components/VuiBox";
+import VuiTypography from "components/VuiTypography";
+import { useVisionUIController } from "context";
+
+function Breadcrumbs({ icon, title, route, light = false }) {
+  const [controller] = useVisionUIController();
+  const { darkMode } = controller;
+  const routes = route.slice(0, -1);
+  
+  return (
+    <VuiBox mr={{ xs: 0, xl: 8 }}>
+      <MuiBreadcrumbs
+        sx={{
+          "& .MuiBreadcrumbs-separator": {
+            color: ({ palette: { white, grey, text } }) => (darkMode ? (light ? white.main : grey[600]) : text.main),
+          },
+        }}
+      >
+        <Link to="/">
+          <VuiTypography
+            component="span"
+            variant="body2"
+            color={darkMode ? (light ? "white" : "dark") : "text"}
+            opacity={darkMode ? (light ? 0.8 : 0.5) : 0.7}
+            sx={{ lineHeight: 0 }}
+          >
+            <Icon sx={{ color: darkMode ? "#FFFFFF" : "#374151" }}>{icon}</Icon>
+          </VuiTypography>
+        </Link>
+        {routes.map((el) => (
+          <Link to={`/${el}`} key={el}>
+            <VuiTypography
+              component="span"
+              variant="button"
+              fontWeight="regular"
+              textTransform="capitalize"
+              color={darkMode ? (light ? "white" : "dark") : "text"}
+              opacity={darkMode ? (light ? 0.8 : 0.5) : 0.7}
+              sx={{ lineHeight: 0 }}
+            >
+              {el}
+            </VuiTypography>
+          </Link>
+        ))}
+        <VuiTypography
+          variant="button"
+          fontWeight="regular"
+          textTransform="capitalize"
+          color={darkMode ? (light ? "white" : "dark") : "text"}
+          sx={{ lineHeight: 0 }}
+        >
+          {title.replace("-", " ")}
+        </VuiTypography>
+      </MuiBreadcrumbs>
+      <VuiTypography
+        fontWeight="bold"
+        textTransform="capitalize"
+        variant="h6"
+        color={darkMode ? (light ? "white" : "dark") : "text"}
+        noWrap
+      >
+        {title.replace("-", " ")}
+      </VuiTypography>
+    </VuiBox>
+  );
+}
+
+// Typechecking props for the Breadcrumbs
+Breadcrumbs.propTypes = {
+  icon: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+  route: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
+  light: PropTypes.bool,
+};
+
+export default Breadcrumbs;

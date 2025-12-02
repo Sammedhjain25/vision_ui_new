@@ -32,19 +32,19 @@ function TopPerformersCard() {
     {
       name: "Jack Blade",
       achievement: "Best in Marks",
-      score: "9.9 GPA",
+      score: "9.9 CGPA",
       avatar: avatar1,
     },
     {
       name: "Ann Kennedy",
       achievement: "Best in Attendance",
-      score: "100%",
+      score: "9.8 CGPA",
       avatar: avatar2,
     },
     {
       name: "Marta Lewis",
       achievement: "Best Exam Result",
-      score: "10/10",
+      score: "9.7 CGPA",
       avatar: avatar3,
     },
   ];

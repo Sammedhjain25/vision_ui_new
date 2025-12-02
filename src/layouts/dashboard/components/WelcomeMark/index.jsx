@@ -18,15 +18,16 @@ const WelcomeMark = () => {
       height: "340px",
       py: darkMode ? "32px" : "0",
       px: darkMode ? "0" : "0",
-      backgroundImage: darkMode ? `url(${gif})` : "none",
-      backgroundSize: "cover",
-      backgroundPosition: "50%",
+      backgroundImage: "none",
+      backgroundSize: darkMode ? "contain" : "cover",
+      backgroundPosition: darkMode ? "right center" : "50%",
+      backgroundRepeat: "no-repeat",
       position: "relative",
       overflow: "hidden"
     })}>
       {darkMode ? (
-        <VuiBox height="100%" display="flex" flexDirection="column" justifyContent="space-between" px="32px">
-          <VuiBox>
+        <VuiBox height="100%" display="flex" flexDirection="row" justifyContent="space-between" px="32px">
+          <VuiBox display="flex" flexDirection="column" justifyContent="center">
             <VuiTypography color="text" variant="button" fontWeight="regular" mb="12px">
               Welcome back,
             </VuiTypography>
@@ -38,37 +39,48 @@ const WelcomeMark = () => {
               <br /> Ask me anything.
             </VuiTypography>
           </VuiBox>
+          <VuiBox display="flex" alignItems="center" justifyContent="center">
+            <img
+              src={rocket}
+              alt="Rocket"
+              style={{
+                height: "280px",
+                width: "auto",
+                maxWidth: "100%",
+              }}
+            />
+          </VuiBox>
         </VuiBox>
       ) : (
         <VuiBox height="100%" display="flex" flexDirection="row" sx={{ padding: "16px" }}>
-          <VuiBox 
-            flex="1" 
-            display="flex" 
-            flexDirection="column" 
+          <VuiBox
+            flex="1"
+            display="flex"
+            flexDirection="column"
             justifyContent="center"
             sx={{ paddingRight: "16px" }}
           >
-            <VuiTypography 
-              color="text" 
-              variant="button" 
-              fontWeight="regular" 
+            <VuiTypography
+              color="text"
+              variant="button"
+              fontWeight="regular"
               mb="12px"
               sx={{ fontFamily: "Poppins, sans-serif" }}
             >
               Welcome back,
             </VuiTypography>
-            <VuiTypography 
-              color="text" 
-              variant="h3" 
-              fontWeight="bold" 
+            <VuiTypography
+              color="text"
+              variant="h3"
+              fontWeight="bold"
               mb="18px"
               sx={{ fontFamily: "Poppins, sans-serif" }}
             >
               Rakshitha
             </VuiTypography>
-            <VuiTypography 
-              color="text" 
-              variant="h6" 
+            <VuiTypography
+              color="text"
+              variant="h6"
               fontWeight="regular"
               sx={{ fontFamily: "Poppins, sans-serif" }}
             >

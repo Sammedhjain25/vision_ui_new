@@ -41,6 +41,20 @@ const CourseGallery = () => {
             price: "$Price",
             badge: "HARVARD UNIVERSITY"
         },
+        {
+            image: profile1,
+            title: "Machine Learning: Advanced Concepts",
+            university: "Stanford University",
+            price: "$Price",
+            badge: "STANFORD UNIVERSITY"
+        },
+        {
+            image: profile2,
+            title: "Data Science and Analytics",
+            university: "MIT",
+            price: "$Price",
+            badge: "MIT"
+        },
     ];
 
     return (
@@ -64,7 +78,7 @@ const CourseGallery = () => {
                         lineHeight: 1.2,
                     }}
                 >
-                    Purchases
+                    Courses
                 </Typography>
                 <Typography
                     variant="h6"
@@ -79,38 +93,24 @@ const CourseGallery = () => {
                 </Typography>
             </Box>
 
-            {/* Horizontal Scrollable Course Cards */}
+            {/* Grid Layout for Course Cards */}
             <Box
                 sx={{
-                    display: 'flex',
+                    display: 'grid',
+                    gridTemplateColumns: {
+                        xs: '1fr',                    // 1 column on mobile
+                        sm: 'repeat(2, 1fr)',         // 2 columns on tablet
+                        md: 'repeat(3, 1fr)',         // 3 columns on desktop
+                    },
                     gap: 3,
-                    overflowX: 'auto',
-                    overflowY: 'hidden',
                     pb: 2,
-                    scrollbarWidth: 'thin',
-                    scrollbarColor: darkMode ? 'rgba(255, 255, 255, 0.2) transparent' : 'rgba(0, 0, 0, 0.2) transparent',
-                    '&::-webkit-scrollbar': {
-                        height: '8px',
-                    },
-                    '&::-webkit-scrollbar-track': {
-                        background: 'transparent',
-                    },
-                    '&::-webkit-scrollbar-thumb': {
-                        backgroundColor: darkMode ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)',
-                        borderRadius: '4px',
-                    },
-                    '&::-webkit-scrollbar-thumb:hover': {
-                        backgroundColor: darkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
-                    },
                 }}
             >
                 {courses.map((course, index) => (
                     <Card
                         key={index}
                         sx={{
-                            minWidth: { xs: '280px', sm: '320px', md: '360px' },
-                            maxWidth: { xs: '280px', sm: '320px', md: '360px' },
-                            flexShrink: 0,
+                            width: '100%',
                             backgroundColor: darkMode ? 'rgba(255, 255, 255, 0.05)' : '#FFFFFF',
                             borderRadius: '12px',
                             overflow: 'hidden',
@@ -234,25 +234,15 @@ const CourseGallery = () => {
                                 {course.university}
                             </Typography>
 
-                            {/* Price and Buy Now Button */}
+                            {/* View Button */}
                             <Box
                                 sx={{
                                     display: 'flex',
-                                    justifyContent: 'space-between',
+                                    justifyContent: 'center',
                                     alignItems: 'center',
                                     mt: 'auto',
                                 }}
                             >
-                                <Typography
-                                    sx={{
-                                        fontFamily: 'Poppins, sans-serif',
-                                        fontSize: '16px',
-                                        fontWeight: 600,
-                                        color: darkMode ? '#FFFFFF' : '#000000',
-                                    }}
-                                >
-                                    {course.price}
-                                </Typography>
                                 <Button
                                     variant="contained"
                                     sx={{
@@ -272,7 +262,7 @@ const CourseGallery = () => {
                                         transition: 'all 0.2s ease-in-out',
                                     }}
                                 >
-                                    Buy Now
+                                    View
                                 </Button>
                             </Box>
                         </CardContent>

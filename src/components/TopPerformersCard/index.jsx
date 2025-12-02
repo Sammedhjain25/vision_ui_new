@@ -20,7 +20,12 @@ import VuiAvatar from "components/VuiAvatar";
 // Vision UI Dashboard React base styles
 import colors from "assets/theme/base/colors";
 
+// Context
+import { useVisionUIController } from "context";
+
 function TopPerformersCard() {
+  const [controller] = useVisionUIController();
+  const { darkMode } = controller;
   const { secondary, gradients } = colors;
 
   const performers = [
@@ -51,7 +56,9 @@ function TopPerformersCard() {
         height: "100%",
         minHeight: "380px",
         flexShrink: 0,
-        background: `linear-gradient(${gradients.cardDark.deg}, ${gradients.cardDark.main}, ${gradients.cardDark.state})`,
+        background: darkMode
+          ? `linear-gradient(${gradients.cardDark.deg}, ${gradients.cardDark.main}, ${gradients.cardDark.state})`
+          : '#ffffff',
         borderRadius: "24px",
         padding: "24px",
         boxShadow: "0 8px 30px rgba(0, 0, 0, 0.25)",
@@ -61,7 +68,7 @@ function TopPerformersCard() {
       }}
     >
       <VuiBox mb={2}>
-        <VuiTypography variant="lg" fontWeight="bold" color="white" textTransform="capitalize">
+        <VuiTypography variant="lg" fontWeight="bold" color={darkMode ? "white" : "dark"} textTransform="capitalize">
           Top Performers
         </VuiTypography>
       </VuiBox>
@@ -91,7 +98,7 @@ function TopPerformersCard() {
               shadow="md"
             />
             <VuiBox flex={1}>
-              <VuiTypography variant="button" fontWeight="bold" color="white">
+              <VuiTypography variant="button" fontWeight="bold" color={darkMode ? "white" : "dark"}>
                 {performer.name}
               </VuiTypography>
               <VuiTypography variant="caption" color="text" fontWeight="regular">
@@ -107,7 +114,7 @@ function TopPerformersCard() {
                 textAlign: "center",
               }}
             >
-              <VuiTypography variant="button" fontWeight="bold" color="white">
+              <VuiTypography variant="button" fontWeight="bold" color={darkMode ? "white" : "dark"}>
                 {performer.score}
               </VuiTypography>
             </VuiBox>

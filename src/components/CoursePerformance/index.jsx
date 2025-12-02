@@ -19,6 +19,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import Chip from "@mui/material/Chip";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { useVisionUIController } from "context";
 
 const testsData = [
   {
@@ -63,6 +64,9 @@ const testsData = [
 ];
 
 function CoursePerformance() {
+  const [controller] = useVisionUIController();
+  const { darkMode } = controller;
+
   const [expanded, setExpanded] = useState({
     test1: true,
     test2: true,
@@ -129,10 +133,14 @@ function CoursePerformance() {
       <Card
         sx={{
           borderRadius: "24px",
-          background: "linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%)",
+          background: darkMode
+            ? "linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%)"
+            : "#ffffff",
           backdropFilter: "blur(16px)",
           boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
+          border: darkMode
+            ? "1px solid rgba(255, 255, 255, 0.1)"
+            : "1px solid rgba(0, 0, 0, 0.1)",
           overflow: "hidden",
           position: "relative",
           "&::before": {
@@ -142,7 +150,7 @@ function CoursePerformance() {
             left: 0,
             right: 0,
             bottom: 0,
-            background: "rgba(255, 255, 255, 0.05)",
+            background: darkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.02)",
             backdropFilter: "blur(16px)",
             pointerEvents: "none",
           },
@@ -201,8 +209,8 @@ function CoursePerformance() {
             py={2}
             px={3}
             sx={{
-              background: "rgba(255, 255, 255, 0.05)",
-              borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+              background: darkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.05)",
+              borderBottom: darkMode ? "1px solid rgba(255, 255, 255, 0.1)" : "1px solid rgba(0, 0, 0, 0.1)",
             }}
           >
             <VuiBox width="30%">
@@ -211,7 +219,7 @@ function CoursePerformance() {
                 fontWeight="600"
                 sx={{
                   fontSize: "14px",
-                  color: "rgba(255, 255, 255, 0.85)",
+                  color: darkMode ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.85)",
                   textTransform: "uppercase",
                   letterSpacing: "0.5px",
                 }}
@@ -225,7 +233,7 @@ function CoursePerformance() {
                 fontWeight="600"
                 sx={{
                   fontSize: "14px",
-                  color: "rgba(255, 255, 255, 0.85)",
+                  color: darkMode ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.85)",
                   textTransform: "uppercase",
                   letterSpacing: "0.5px",
                 }}
@@ -239,7 +247,7 @@ function CoursePerformance() {
                 fontWeight="600"
                 sx={{
                   fontSize: "14px",
-                  color: "rgba(255, 255, 255, 0.85)",
+                  color: darkMode ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.85)",
                   textTransform: "uppercase",
                   letterSpacing: "0.5px",
                 }}
@@ -253,7 +261,7 @@ function CoursePerformance() {
                 fontWeight="600"
                 sx={{
                   fontSize: "14px",
-                  color: "rgba(255, 255, 255, 0.85)",
+                  color: darkMode ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.85)",
                   textTransform: "uppercase",
                   letterSpacing: "0.5px",
                 }}
@@ -267,7 +275,7 @@ function CoursePerformance() {
                 fontWeight="600"
                 sx={{
                   fontSize: "14px",
-                  color: "rgba(255, 255, 255, 0.85)",
+                  color: darkMode ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.85)",
                   textTransform: "uppercase",
                   letterSpacing: "0.5px",
                 }}
@@ -290,11 +298,15 @@ function CoursePerformance() {
                 py={2}
                 px={3}
                 sx={{
-                  background: index % 2 === 0 ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.1)",
-                  borderBottom: index < test.testData.length - 1 ? "1px solid rgba(255, 255, 255, 0.1)" : "none",
+                  background: darkMode
+                    ? (index % 2 === 0 ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.1)")
+                    : (index % 2 === 0 ? "rgba(0, 0, 0, 0.02)" : "rgba(0, 0, 0, 0.05)"),
+                  borderBottom: index < test.testData.length - 1
+                    ? (darkMode ? "1px solid rgba(255, 255, 255, 0.1)" : "1px solid rgba(0, 0, 0, 0.1)")
+                    : "none",
                   transition: "background 0.2s ease",
                   "&:hover": {
-                    background: "rgba(255, 255, 255, 0.15)",
+                    background: darkMode ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.08)",
                   },
                 }}
               >
@@ -304,7 +316,7 @@ function CoursePerformance() {
                     fontWeight="600"
                     sx={{
                       fontSize: "14px",
-                      color: "rgba(255, 255, 255, 0.85)",
+                      color: darkMode ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.85)",
                     }}
                   >
                     {item.subject}
@@ -315,7 +327,7 @@ function CoursePerformance() {
                     variant="button"
                     sx={{
                       fontSize: "14px",
-                      color: "rgba(255, 255, 255, 0.85)",
+                      color: darkMode ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.85)",
                     }}
                   >
                     {item.maxMarks}
@@ -326,7 +338,7 @@ function CoursePerformance() {
                     variant="button"
                     sx={{
                       fontSize: "14px",
-                      color: "rgba(255, 255, 255, 0.85)",
+                      color: darkMode ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.85)",
                     }}
                   >
                     {item.minMarks}
@@ -339,7 +351,7 @@ function CoursePerformance() {
                       fontWeight="600"
                       sx={{
                         fontSize: "14px",
-                        color: "rgba(255, 255, 255, 0.85)",
+                        color: darkMode ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.85)",
                         mb: 0.5,
                       }}
                     >
@@ -388,7 +400,9 @@ function CoursePerformance() {
           {/* Summary Footer - Dark Navy Bar */}
           <VuiBox
             sx={{
-              background: "linear-gradient(90deg, #0f172a 0%, #1e293b 100%)",
+              background: darkMode
+                ? "linear-gradient(90deg, #0f172a 0%, #1e293b 100%)"
+                : "linear-gradient(90deg, #e5e7eb 0%, #d1d5db 100%)",
               borderRadius: "0 0 24px 24px",
               padding: "16px 24px",
               display: "flex",
@@ -397,14 +411,14 @@ function CoursePerformance() {
               flexWrap: "wrap",
               gap: 3,
               mt: 0,
-              borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+              borderTop: darkMode ? "1px solid rgba(255, 255, 255, 0.1)" : "1px solid rgba(0, 0, 0, 0.1)",
             }}
           >
             <VuiBox display="flex" alignItems="center" gap={1}>
               <VuiTypography
                 variant="caption"
                 sx={{
-                  color: "rgba(255, 255, 255, 0.7)",
+                  color: darkMode ? "rgba(255, 255, 255, 0.7)" : "rgba(0, 0, 0, 0.7)",
                   fontSize: "12px",
                   fontWeight: "500",
                 }}
@@ -415,7 +429,7 @@ function CoursePerformance() {
                 variant="button"
                 fontWeight="bold"
                 sx={{
-                  color: "#ffffff",
+                  color: darkMode ? "#ffffff" : "#000000",
                   fontSize: "15px",
                 }}
               >
@@ -426,7 +440,7 @@ function CoursePerformance() {
               <VuiTypography
                 variant="caption"
                 sx={{
-                  color: "rgba(255, 255, 255, 0.7)",
+                  color: darkMode ? "rgba(255, 255, 255, 0.7)" : "rgba(0, 0, 0, 0.7)",
                   fontSize: "12px",
                   fontWeight: "500",
                 }}
@@ -437,7 +451,7 @@ function CoursePerformance() {
                 variant="button"
                 fontWeight="bold"
                 sx={{
-                  color: "#ffffff",
+                  color: darkMode ? "#ffffff" : "#000000",
                   fontSize: "15px",
                 }}
               >
@@ -448,7 +462,7 @@ function CoursePerformance() {
               <VuiTypography
                 variant="caption"
                 sx={{
-                  color: "rgba(255, 255, 255, 0.7)",
+                  color: darkMode ? "rgba(255, 255, 255, 0.7)" : "rgba(0, 0, 0, 0.7)",
                   fontSize: "12px",
                   fontWeight: "500",
                 }}
@@ -459,7 +473,7 @@ function CoursePerformance() {
                 variant="button"
                 fontWeight="bold"
                 sx={{
-                  color: "#ffffff",
+                  color: darkMode ? "#ffffff" : "#000000",
                   fontSize: "15px",
                 }}
               >
@@ -470,7 +484,7 @@ function CoursePerformance() {
               <VuiTypography
                 variant="caption"
                 sx={{
-                  color: "rgba(255, 255, 255, 0.7)",
+                  color: darkMode ? "rgba(255, 255, 255, 0.7)" : "rgba(0, 0, 0, 0.7)",
                   fontSize: "12px",
                   fontWeight: "500",
                 }}
@@ -481,7 +495,7 @@ function CoursePerformance() {
                 variant="button"
                 fontWeight="bold"
                 sx={{
-                  color: "#ffffff",
+                  color: darkMode ? "#ffffff" : "#000000",
                   fontSize: "15px",
                 }}
               >
@@ -492,7 +506,7 @@ function CoursePerformance() {
               <VuiTypography
                 variant="caption"
                 sx={{
-                  color: "rgba(255, 255, 255, 0.7)",
+                  color: darkMode ? "rgba(255, 255, 255, 0.7)" : "rgba(0, 0, 0, 0.7)",
                   fontSize: "12px",
                   fontWeight: "500",
                 }}
@@ -558,7 +572,7 @@ function CoursePerformance() {
               expandIcon={
                 <ExpandMoreIcon
                   sx={{
-                    color: "rgba(255, 255, 255, 0.7)",
+                    color: darkMode ? "rgba(255, 255, 255, 0.7)" : "rgba(0, 0, 0, 0.7)",
                     transition: "transform 0.3s ease",
                     transform: expanded[test.id] ? "rotate(180deg)" : "rotate(0deg)",
                   }}
@@ -567,9 +581,13 @@ function CoursePerformance() {
               sx={{
                 padding: "18px 24px",
                 minHeight: "auto",
-                background: "linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%)",
+                background: darkMode
+                  ? "linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%)"
+                  : "#ffffff",
                 borderRadius: "24px",
-                border: "1px solid rgba(255, 255, 255, 0.1)",
+                border: darkMode
+                  ? "1px solid rgba(255, 255, 255, 0.1)"
+                  : "1px solid rgba(0, 0, 0, 0.1)",
                 boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
                 transition: "all 0.2s ease",
                 "&:hover": {
@@ -587,7 +605,7 @@ function CoursePerformance() {
               <VuiBox display="flex" alignItems="center" gap={2} flex={1}>
                 <CheckCircleIcon
                   sx={{
-                    color: "#ffffff",
+                    color: darkMode ? "#ffffff" : "#000000",
                     fontSize: "22px",
                   }}
                 />
@@ -596,7 +614,7 @@ function CoursePerformance() {
                   fontWeight="bold"
                   sx={{
                     fontSize: "16px",
-                    color: "#ffffff",
+                    color: darkMode ? "#ffffff" : "#000000",
                   }}
                 >
                   {test.title}
@@ -612,7 +630,7 @@ function CoursePerformance() {
                   fontWeight="600"
                   sx={{
                     fontSize: "14px",
-                    color: "rgba(255, 255, 255, 0.85)",
+                    color: darkMode ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.85)",
                   }}
                 >
                   {marksObtained} / {totalMarks}

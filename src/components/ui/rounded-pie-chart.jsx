@@ -11,6 +11,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/pie-chart";
 import colors from "assets/theme/base/colors";
+import { useVisionUIController } from "context";
 
 const { gradients } = colors;
 
@@ -49,11 +50,16 @@ const chartConfig = {
 };
 
 export default function RoundedPieChart() {
+  const [controller] = useVisionUIController();
+  const { darkMode } = controller;
+
   return (
     <Card
       sx={{
         borderRadius: "24px",
-        background: `linear-gradient(${gradients.cardDark.deg}, ${gradients.cardDark.main}, ${gradients.cardDark.state})`,
+        background: darkMode
+          ? `linear-gradient(${gradients.cardDark.deg}, ${gradients.cardDark.main}, ${gradients.cardDark.state})`
+          : '#ffffff',
         padding: "24px",
         width: "100%",
         height: "100%",
@@ -67,7 +73,7 @@ export default function RoundedPieChart() {
     >
       <VuiBox display="flex" flexDirection="column" gap={2} flex={1}>
         <VuiBox display="flex" alignItems="center" justifyContent="center" gap={1} mb={1}>
-          <VuiTypography variant="lg" fontWeight="bold" color="white" textTransform="capitalize">
+          <VuiTypography variant="lg" fontWeight="bold" color={darkMode ? "white" : "dark"} textTransform="capitalize">
             Subject Marks
           </VuiTypography>
           <VuiBox
@@ -83,7 +89,7 @@ export default function RoundedPieChart() {
             }}
           >
             <TrendingUpIcon sx={{ height: "16px", width: "16px" }} />
-            <VuiTypography variant="caption" color="white" fontWeight="600">
+            <VuiTypography variant="caption" color={darkMode ? "white" : "dark"} fontWeight="600">
               5.2%
             </VuiTypography>
           </VuiBox>

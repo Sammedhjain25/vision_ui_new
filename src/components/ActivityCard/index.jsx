@@ -6,11 +6,12 @@
 
 import React from 'react';
 import styled from '@emotion/styled';
+import { useVisionUIController } from "context";
 
 const StyledWrapper = styled.div`
   .card {
-    --primary-clr: #1C204B;
-    --dot-clr: #BBC0FF;
+    --primary-clr: ${props => props.darkMode ? '#1C204B' : '#ffffff'};
+    --dot-clr: ${props => props.darkMode ? '#BBC0FF' : '#666'};
     --play: hsl(195, 74%, 62%);
     width: 200px;
     height: 170px;
@@ -19,7 +20,7 @@ const StyledWrapper = styled.div`
 
   .card {
     font-family: "Arial";
-    color: #fff;
+    color: ${props => props.darkMode ? '#fff' : '#000'};
     display: grid;
     cursor: pointer;
     grid-template-rows: 50px 1fr;
@@ -107,10 +108,12 @@ const cardData = [
 ];
 
 function ActivityCard({ index = 0 }) {
+  const [controller] = useVisionUIController();
+  const { darkMode } = controller;
   const data = cardData[index] || cardData[0];
 
   return (
-    <StyledWrapper>
+    <StyledWrapper darkMode={darkMode}>
       <div className="card work">
         <div className="img-section">
           <svg xmlns="http://www.w3.org/2000/svg" height={77} width={76}>

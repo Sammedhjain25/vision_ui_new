@@ -13,7 +13,12 @@ import VuiAvatar from "components/VuiAvatar";
 // Vision UI Dashboard React base styles
 import typography from "assets/theme/base/typography";
 
+// Context
+import { useVisionUIController } from "context";
+
 function ResultProfileCard({ title, description, info, social, avatar }) {
+    const [controller] = useVisionUIController();
+    const { darkMode } = controller;
     const labels = [];
     const values = [];
     const { size } = typography;
@@ -59,7 +64,7 @@ function ResultProfileCard({ title, description, info, social, avatar }) {
             }}
         >
             <VuiBox display="flex" mb="20px" justifyContent="space-between" alignItems="center">
-                <VuiTypography variant="lg" fontWeight="bold" color="white" textTransform="capitalize">
+                <VuiTypography variant="lg" fontWeight="bold" color={darkMode ? "white" : "dark"} textTransform="capitalize">
                     {title}
                 </VuiTypography>
             </VuiBox>
@@ -111,7 +116,7 @@ function ResultProfileCard({ title, description, info, social, avatar }) {
                             <VuiTypography
                                 variant="button"
                                 fontWeight="medium"
-                                color="white"
+                                color={darkMode ? "white" : "dark"}
                                 sx={{ fontSize: '14px' }}
                             >
                                 {values[key]}

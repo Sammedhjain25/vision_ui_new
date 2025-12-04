@@ -147,6 +147,8 @@ export default function RoundedPieChart() {
                 dataKey="marks"
                 cornerRadius={8}
                 paddingAngle={4}
+                isAnimationActive={false}
+                animationDuration={0}
               >
                 {chartData.map((entry, index) => (
                   <Cell

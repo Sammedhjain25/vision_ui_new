@@ -39,7 +39,7 @@ function ResultProfileCard({ title, description, info, social, avatar }) {
     Object.values(info).forEach((el) => values.push(el));
 
     // Render the card social media icons
-    const renderSocial = social.map(({ link, icon, color }) => (
+    const renderSocial = social ? social.map(({ link, icon, color }) => (
         <VuiBox
             key={color}
             component="a"
@@ -54,7 +54,7 @@ function ResultProfileCard({ title, description, info, social, avatar }) {
         >
             {icon}
         </VuiBox>
-    ));
+    )) : null;
 
     return (
         <Card
@@ -123,31 +123,33 @@ function ResultProfileCard({ title, description, info, social, avatar }) {
                             </VuiTypography>
                         </VuiBox>
                     ))}
-                    <VuiBox
-                        display="flex"
-                        alignItems="center"
-                        gap={1.5}
-                        mt={3}
-                        sx={{
-                            background: 'rgba(255, 255, 255, 0.05)',
-                            borderRadius: '12px',
-                            padding: '14px 16px',
-                            border: '1px solid rgba(255, 255, 255, 0.1)',
-                        }}
-                    >
-                        <VuiTypography
-                            variant="caption"
-                            fontWeight="medium"
-                            color="text"
-                            textTransform="capitalize"
-                            sx={{ fontSize: '11px' }}
+                    {social && social.length > 0 && (
+                        <VuiBox
+                            display="flex"
+                            alignItems="center"
+                            gap={1.5}
+                            mt={3}
+                            sx={{
+                                background: 'rgba(255, 255, 255, 0.05)',
+                                borderRadius: '12px',
+                                padding: '14px 16px',
+                                border: '1px solid rgba(255, 255, 255, 0.1)',
+                            }}
                         >
-                            Social:
-                        </VuiTypography>
-                        <VuiBox display="flex" gap={1}>
-                            {renderSocial}
+                            <VuiTypography
+                                variant="caption"
+                                fontWeight="medium"
+                                color="text"
+                                textTransform="capitalize"
+                                sx={{ fontSize: '11px' }}
+                            >
+                                Social:
+                            </VuiTypography>
+                            <VuiBox display="flex" gap={1}>
+                                {renderSocial}
+                            </VuiBox>
                         </VuiBox>
-                    </VuiBox>
+                    )}
                 </VuiBox>
             </VuiBox>
         </Card>
@@ -159,7 +161,7 @@ ResultProfileCard.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
     info: PropTypes.objectOf(PropTypes.string).isRequired,
-    social: PropTypes.arrayOf(PropTypes.object).isRequired,
+    social: PropTypes.arrayOf(PropTypes.object),
     avatar: PropTypes.string,
 };
 

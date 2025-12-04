@@ -99,22 +99,14 @@ function UpcomingScheduleSection() {
 
   return (
     <VuiBox>
-      <VuiBox display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+      <VuiBox mb={2}>
         <VuiTypography variant="h6" color={darkMode ? "white" : "text"} fontWeight="bold">
           Upcoming Schedule
-        </VuiTypography>
-        <VuiTypography
-          variant="button"
-          color={darkMode ? "success" : "text"}
-          fontWeight="medium"
-          sx={{ cursor: 'pointer', fontSize: '14px', color: darkMode ? undefined : "#000000" }}
-        >
-          View all ›
         </VuiTypography>
       </VuiBox>
       <VuiBox display="flex" flexDirection="column" gap={2}>
         {upcomingItems.map((item) => (
-          <Card 
+          <Card
             key={item.id}
             sx={{
               position: "relative",
@@ -175,18 +167,18 @@ function UpcomingScheduleSection() {
               <Grid item xs="auto">
                 <VuiBox display="flex" flexDirection="column" gap={1.25}>
                   <VuiBox display="flex" alignItems="center" gap={1}>
-                    <IoCalendarOutline 
-                      size={16} 
-                      color={darkMode ? "#a0aec0" : "#000000"} 
+                    <IoCalendarOutline
+                      size={16}
+                      color={darkMode ? "#a0aec0" : "#000000"}
                     />
                     <VuiTypography variant="caption" color={darkMode ? "text" : "text"} fontSize="12px" sx={{ color: darkMode ? undefined : "#000000" }}>
                       {item.date}
                     </VuiTypography>
                   </VuiBox>
                   <VuiBox display="flex" alignItems="center" gap={1}>
-                    <IoTimeOutline 
-                      size={16} 
-                      color={darkMode ? "#a0aec0" : "#000000"} 
+                    <IoTimeOutline
+                      size={16}
+                      color={darkMode ? "#a0aec0" : "#000000"}
                     />
                     <VuiTypography variant="caption" color={darkMode ? "text" : "text"} fontSize="12px" sx={{ color: darkMode ? undefined : "#000000" }}>
                       {item.time}
@@ -195,11 +187,11 @@ function UpcomingScheduleSection() {
                 </VuiBox>
               </Grid>
               <Grid item xs="auto">
-                <VuiTypography 
-                  variant="button" 
-                  color="text" 
-                  sx={{ 
-                    cursor: 'pointer', 
+                <VuiTypography
+                  variant="button"
+                  color="text"
+                  sx={{
+                    cursor: 'pointer',
                     fontSize: '20px',
                     color: darkMode ? undefined : "#4B5563", // gray-600 in light mode
                   }}

@@ -1,4 +1,4 @@
-/*!
+/*!\r
 
 =========================================================
 * Vision UI Free React - v1.0.0
@@ -17,10 +17,6 @@
 */
 
 // @mui material components
-// @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import Grid from "@mui/material/Grid";
 // Images
 import burceMars from "assets/images/avatar-simmmple.png";
@@ -42,8 +38,28 @@ function Result() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <VuiBox py={1} px={1}>
-        <Grid container spacing={3}>
+      <VuiBox
+        py={{ xs: 1, sm: 1 }}
+        px={{ xs: 1.5, sm: 1 }}
+        sx={{
+          '@media (max-width: 400px)': {
+            px: 1.5,
+            py: 1,
+          }
+        }}
+      >
+        <Grid
+          container
+          spacing={{ xs: 1, sm: 3 }}
+          sx={{
+            '@media (max-width: 400px)': {
+              '& .MuiGrid-item': {
+                paddingTop: '8px !important',
+                paddingLeft: '8px !important',
+              }
+            }
+          }}
+        >
           {/* Left Column - Profile Information */}
           <Grid item xs={12} md={4}>
             <ResultProfileCard
@@ -56,29 +72,24 @@ function Result() {
                 email: "mark@simmmple.com",
                 location: "United States",
               }}
-              social={[
-                {
-                  link: "https://www.facebook.com/CreativeTim/",
-                  icon: <FacebookIcon />,
-                  color: "facebook",
-                },
-                {
-                  link: "https://twitter.com/creativetim",
-                  icon: <TwitterIcon />,
-                  color: "twitter",
-                },
-                {
-                  link: "https://www.instagram.com/creativetimofficial/",
-                  icon: <InstagramIcon />,
-                  color: "instagram",
-                },
-              ]}
             />
           </Grid>
 
           {/* Right Column - Top Performers and Activity Cards */}
           <Grid item xs={12} md={8}>
-            <Grid container spacing={4} alignItems="stretch">
+            <Grid
+              container
+              spacing={{ xs: 1, sm: 4 }}
+              alignItems="stretch"
+              sx={{
+                '@media (max-width: 400px)': {
+                  '& .MuiGrid-item': {
+                    paddingTop: '8px !important',
+                    paddingLeft: '8px !important',
+                  }
+                }
+              }}
+            >
               <Grid item xs={12} md={6}>
                 <TopPerformersCard />
               </Grid>
@@ -86,7 +97,13 @@ function Result() {
                 <RoundedPieChart />
               </Grid>
               <Grid item xs={12} md={12}>
-                <VuiBox display="flex" gap={4} justifyContent="flex-start" flexWrap="wrap" mt={3}>
+                <VuiBox
+                  display="flex"
+                  gap={{ xs: 1, sm: 4 }}
+                  justifyContent="flex-start"
+                  flexWrap="wrap"
+                  mt={{ xs: 1, sm: 3 }}
+                >
                   <ActivityCard index={0} />
                   <ActivityCard index={1} />
                   <ActivityCard index={2} />
@@ -97,7 +114,7 @@ function Result() {
 
           {/* Course Performance Section - Below Mini Cards */}
           <Grid item xs={12} md={12}>
-            <VuiBox mt={3}>
+            <VuiBox mt={{ xs: 1, sm: 3 }}>
               <CoursePerformance />
             </VuiBox>
           </Grid>
@@ -108,4 +125,3 @@ function Result() {
 }
 
 export default Result;
-

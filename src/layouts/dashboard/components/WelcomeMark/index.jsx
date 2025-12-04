@@ -44,7 +44,7 @@ const WelcomeMark = () => {
               src={rocket}
               alt="Rocket"
               style={{
-                height: "280px",
+                height: "200px",
                 width: "auto",
                 maxWidth: "100%",
               }}

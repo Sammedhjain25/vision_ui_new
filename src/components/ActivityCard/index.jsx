@@ -19,7 +19,7 @@ const StyledWrapper = styled.div`
   }
 
   .card {
-    font-family: "Arial";
+    font-family: "Poppins";
     color: ${props => props.darkMode ? '#fff' : '#000'};
     display: grid;
     cursor: pointer;

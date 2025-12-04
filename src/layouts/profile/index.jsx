@@ -85,23 +85,6 @@ function Overview() {
                 semester: "Semester 5",
                 location: "United States",
               }}
-              social={[
-                {
-                  link: "https://www.facebook.com",
-                  icon: <FacebookIcon />,
-                  color: "facebook",
-                },
-                {
-                  link: "https://www.twitter.com",
-                  icon: <TwitterIcon />,
-                  color: "twitter",
-                },
-                {
-                  link: "https://www.instagram.com",
-                  icon: <InstagramIcon />,
-                  color: "instagram",
-                },
-              ]}
             />
           </Grid>
           <Grid

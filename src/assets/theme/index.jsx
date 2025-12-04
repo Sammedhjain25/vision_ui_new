@@ -24,6 +24,7 @@ import colors from "assets/theme/base/colors";
 import colorsLight from "assets/theme/base/colorsLight";
 import breakpoints from "assets/theme/base/breakpoints";
 import typography from "assets/theme/base/typography";
+import typographyLight from "assets/theme/base/typographyLight";
 import boxShadows from "assets/theme/base/boxShadows";
 import borders from "assets/theme/base/borders";
 import globals from "assets/theme/base/globals";
@@ -88,11 +89,13 @@ const createAppTheme = (isDarkMode = true) => {
   const themeColors = isDarkMode ? colors : colorsLight;
   // Use dark theme globals (with images) or light theme globals (solid colors)
   const themeGlobals = isDarkMode ? globals : globalsLight;
+  // Use dark theme typography (Plus Jakarta Display) or light theme typography (Poppins)
+  const themeTypography = isDarkMode ? typography : typographyLight;
 
   return createTheme({
     breakpoints: { ...breakpoints },
     palette: { ...themeColors },
-    typography: { ...typography },
+    typography: { ...themeTypography },
     boxShadows: { ...boxShadows },
     borders: { ...borders },
     functions: {
@@ -104,57 +107,57 @@ const createAppTheme = (isDarkMode = true) => {
       rgba,
     },
     components: {
-    MuiCssBaseline: {
-      styleOverrides: {
-        ...themeGlobals,
-        ...container,
+      MuiCssBaseline: {
+        styleOverrides: {
+          ...themeGlobals,
+          ...container,
+        },
       },
+      MuiDrawer: { ...sidenav },
+      MuiList: { ...list },
+      MuiListItem: { ...listItem },
+      MuiListItemText: { ...listItemText },
+      MuiCard: { ...card },
+      MuiCardMedia: { ...cardMedia },
+      MuiCardContent: { ...cardContent },
+      MuiButton: { ...button },
+      MuiIconButton: { ...iconButton },
+      MuiInputBase: { ...inputBase },
+      MuiMenu: { ...menu },
+      MuiMenuItem: { ...menuItem },
+      MuiSwitch: { ...switchButton },
+      MuiDivider: { ...divider },
+      MuiTableContainer: { ...tableContainer },
+      MuiTableHead: { ...tableHead },
+      MuiTableCell: { ...tableCell },
+      MuiLinearProgress: { ...linearProgress },
+      MuiBreadcrumbs: { ...breadcrumbs },
+      MuiSlider: { ...slider },
+      MuiAvatar: { ...avatar },
+      MuiTooltip: { ...tooltip },
+      MuiAppBar: { ...appBar },
+      MuiTabs: { ...tabs },
+      MuiTab: { ...tab },
+      MuiStepper: { ...stepper },
+      MuiStep: { ...step },
+      MuiStepConnector: { ...stepConnector },
+      MuiStepLabel: { ...stepLabel },
+      MuiStepIcon: { ...stepIcon },
+      MuiSelect: { ...select },
+      MuiFormControlLabel: { ...formControlLabel },
+      MuiFormLabel: { ...formLabel },
+      MuiCheckbox: { ...checkbox },
+      MuiRadio: { ...radio },
+      MuiAutocomplete: { ...autocomplete },
+      MuiInput: { ...input },
+      MuiOutlinedInput: { ...input },
+      MuiFilledInput: { ...input },
+      MuiPopover: { ...popover },
+      MuiButtonBase: { ...buttonBase },
+      MuiIcon: { ...icon },
+      MuiSvgIcon: { ...svgIcon },
+      MuiLink: { ...link },
     },
-    MuiDrawer: { ...sidenav },
-    MuiList: { ...list },
-    MuiListItem: { ...listItem },
-    MuiListItemText: { ...listItemText },
-    MuiCard: { ...card },
-    MuiCardMedia: { ...cardMedia },
-    MuiCardContent: { ...cardContent },
-    MuiButton: { ...button },
-    MuiIconButton: { ...iconButton },
-    MuiInputBase: { ...inputBase },
-    MuiMenu: { ...menu },
-    MuiMenuItem: { ...menuItem },
-    MuiSwitch: { ...switchButton },
-    MuiDivider: { ...divider },
-    MuiTableContainer: { ...tableContainer },
-    MuiTableHead: { ...tableHead },
-    MuiTableCell: { ...tableCell },
-    MuiLinearProgress: { ...linearProgress },
-    MuiBreadcrumbs: { ...breadcrumbs },
-    MuiSlider: { ...slider },
-    MuiAvatar: { ...avatar },
-    MuiTooltip: { ...tooltip },
-    MuiAppBar: { ...appBar },
-    MuiTabs: { ...tabs },
-    MuiTab: { ...tab },
-    MuiStepper: { ...stepper },
-    MuiStep: { ...step },
-    MuiStepConnector: { ...stepConnector },
-    MuiStepLabel: { ...stepLabel },
-    MuiStepIcon: { ...stepIcon },
-    MuiSelect: { ...select },
-    MuiFormControlLabel: { ...formControlLabel },
-    MuiFormLabel: { ...formLabel },
-    MuiCheckbox: { ...checkbox },
-    MuiRadio: { ...radio },
-    MuiAutocomplete: { ...autocomplete },
-    MuiInput: { ...input },
-    MuiOutlinedInput: { ...input },
-    MuiFilledInput: { ...input },
-    MuiPopover: { ...popover },
-    MuiButtonBase: { ...buttonBase },
-    MuiIcon: { ...icon },
-    MuiSvgIcon: { ...svgIcon },
-    MuiLink: { ...link },
-  },
   });
 };
 

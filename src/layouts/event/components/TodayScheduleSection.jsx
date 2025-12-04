@@ -74,7 +74,7 @@ function TodayScheduleSection() {
         <VuiTypography variant="h6" color={darkMode ? "white" : "text"} fontWeight="bold" mb={2}>
           Today Schedule
         </VuiTypography>
-        <VuiBox sx={{ overflowX: "auto" }}>
+        <VuiBox sx={{ overflowX: "hidden" }}>
           <VuiBox
             sx={{
               position: 'relative',
@@ -115,7 +115,7 @@ function TodayScheduleSection() {
                       top: '50%',
                       height: 0,
                       width: '1000px',
-                      borderTop: darkMode 
+                      borderTop: darkMode
                         ? '1px dashed rgba(226, 232, 240, 0.3)'
                         : '1px dashed #000000',
                       transform: 'translateY(-50%)',
@@ -161,11 +161,11 @@ function TodayScheduleSection() {
                     <VuiTypography variant="button" color={darkMode ? "white" : "text"} fontWeight="bold">
                       {item.title}
                     </VuiTypography>
-                    <VuiTypography 
-                      variant="button" 
-                      color="text" 
-                      sx={{ 
-                        cursor: 'pointer', 
+                    <VuiTypography
+                      variant="button"
+                      color="text"
+                      sx={{
+                        cursor: 'pointer',
                         fontSize: '20px',
                         color: darkMode ? undefined : "#374151", // gray-700 in light mode
                       }}

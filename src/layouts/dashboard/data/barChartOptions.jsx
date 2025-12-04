@@ -25,12 +25,12 @@ export const barChartOptionsDashboard = {
   tooltip: {
     style: {
       fontSize: "10px",
-      fontFamily: "Plus Jakarta Display",
+      fontFamily: "Poppins",
     },
     onDatasetHover: {
       style: {
         fontSize: "10px",
-        fontFamily: "Plus Jakarta Display",
+        fontFamily: "Poppins",
       },
     },
     theme: "dark",
@@ -60,7 +60,7 @@ export const barChartOptionsDashboard = {
       style: {
         colors: "#fff",
         fontSize: "10px",
-        fontFamily: "Plus Jakarta Display",
+        fontFamily: "Poppins",
       },
     },
   },

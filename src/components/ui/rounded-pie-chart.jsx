@@ -1,14 +1,13 @@
 "use client";
 
-import { LabelList, Pie, PieChart } from "recharts";
+import { useState } from "react";
+import { LabelList, Pie, PieChart, Cell } from "recharts";
 import Card from "@mui/material/Card";
 import VuiBox from "components/VuiBox";
 import VuiTypography from "components/VuiTypography";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import {
   ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
 } from "@/components/ui/pie-chart";
 import colors from "assets/theme/base/colors";
 import { useVisionUIController } from "context";
@@ -52,6 +51,31 @@ const chartConfig = {
 export default function RoundedPieChart() {
   const [controller] = useVisionUIController();
   const { darkMode } = controller;
+  const [activeSubject, setActiveSubject] = useState(null);
+
+  // Custom label component to render centered text
+  const CenterLabel = ({ viewBox }) => {
+    const { cx, cy } = viewBox;
+
+    if (!activeSubject) return null;
+
+    return (
+      <text
+        x={cx}
+        y={cy}
+        textAnchor="middle"
+        dominantBaseline="middle"
+        style={{
+          fontSize: '18px',
+          fontWeight: 'bold',
+          fill: darkMode ? '#ffffff' : '#000000',
+          pointerEvents: 'none',
+        }}
+      >
+        {activeSubject}
+      </text>
+    );
+  };
 
   return (
     <Card
@@ -89,7 +113,7 @@ export default function RoundedPieChart() {
             }}
           >
             <TrendingUpIcon sx={{ height: "16px", width: "16px" }} />
-            <VuiTypography variant="caption" color={darkMode ? "white" : "dark"} fontWeight="600">
+            <VuiTypography variant="caption" color={darkMode ? "white" : "dark"} fontWeight="bold">
               5.2%
             </VuiTypography>
           </VuiBox>
@@ -116,9 +140,6 @@ export default function RoundedPieChart() {
             }}
           >
             <PieChart>
-              <ChartTooltip
-                content={<ChartTooltipContent nameKey="marks" hideLabel />}
-              />
               <Pie
                 data={chartData}
                 innerRadius={60}
@@ -127,13 +148,26 @@ export default function RoundedPieChart() {
                 cornerRadius={8}
                 paddingAngle={4}
               >
+                {chartData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={entry.fill}
+                    onMouseEnter={() => setActiveSubject(entry.subject)}
+                    onMouseLeave={() => setActiveSubject(null)}
+                    style={{ cursor: 'pointer' }}
+                  />
+                ))}
                 <LabelList
                   dataKey="marks"
                   stroke="none"
                   fontSize={12}
                   fontWeight={500}
-                  fill="#ffffff"
+                  fill={darkMode ? "#ffffff" : "#000000"}
                   formatter={(value) => value.toString()}
+                />
+                <LabelList
+                  content={<CenterLabel />}
+                  position="center"
                 />
               </Pie>
             </PieChart>
@@ -143,4 +177,3 @@ export default function RoundedPieChart() {
     </Card>
   );
 }
-

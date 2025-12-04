@@ -24,105 +24,105 @@ import colors from "assets/theme/base/colors";
 import { useVisionUIController } from "context";
 
 function TopPerformersCard() {
-  const [controller] = useVisionUIController();
-  const { darkMode } = controller;
-  const { secondary, gradients } = colors;
+    const [controller] = useVisionUIController();
+    const { darkMode } = controller;
+    const { secondary, gradients } = colors;
 
-  const performers = [
-    {
-      name: "Jack Blade",
-      achievement: "Best in Marks",
-      score: "9.9 CGPA",
-      avatar: avatar1,
-    },
-    {
-      name: "Ann Kennedy",
-      achievement: "Best in Attendance",
-      score: "9.8 CGPA",
-      avatar: avatar2,
-    },
-    {
-      name: "Marta Lewis",
-      achievement: "Best Exam Result",
-      score: "9.7 CGPA",
-      avatar: avatar3,
-    },
-  ];
+    const performers = [
+        {
+            name: "Jack Blade",
+            achievement: "Best in Marks",
+            score: "9.9 CGPA",
+            avatar: avatar1,
+        },
+        {
+            name: "Ann Kennedy",
+            achievement: "Best in Attendance",
+            score: "9.8 CGPA",
+            avatar: avatar2,
+        },
+        {
+            name: "Marta Lewis",
+            achievement: "Best Exam Result",
+            score: "9.7 CGPA",
+            avatar: avatar3,
+        },
+    ];
 
-  return (
-    <Card
-      sx={{
-        width: "100%",
-        height: "100%",
-        minHeight: "380px",
-        flexShrink: 0,
-        background: darkMode
-          ? `linear-gradient(${gradients.cardDark.deg}, ${gradients.cardDark.main}, ${gradients.cardDark.state})`
-          : '#ffffff',
-        borderRadius: "24px",
-        padding: "24px",
-        boxShadow: "0 8px 30px rgba(0, 0, 0, 0.25)",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-      }}
-    >
-      <VuiBox mb={2}>
-        <VuiTypography variant="lg" fontWeight="bold" color={darkMode ? "white" : "dark"} textTransform="capitalize">
-          Top Performers
-        </VuiTypography>
-      </VuiBox>
-
-      <VuiBox display="flex" flexDirection="column" gap={2} flex={1}>
-        {performers.map((performer, index) => (
-          <VuiBox
-            key={index}
-            display="flex"
-            alignItems="center"
-            gap={2}
-            p={1.5}
+    return (
+        <Card
             sx={{
-              borderRadius: "12px",
-              background: `linear-gradient(${gradients.cardContent.deg}, ${gradients.cardContent.main}, ${gradients.cardContent.state})`,
-              transition: "transform 0.2s ease-in-out",
-              "&:hover": {
-                transform: "translateY(-2px)",
-              },
+                width: "100%",
+                height: "100%",
+                minHeight: "380px",
+                flexShrink: 0,
+                background: darkMode
+                    ? `linear-gradient(${gradients.cardDark.deg}, ${gradients.cardDark.main}, ${gradients.cardDark.state})`
+                    : '#ffffff',
+                borderRadius: "24px",
+                padding: "24px",
+                boxShadow: "0 8px 30px rgba(0, 0, 0, 0.25)",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
             }}
-          >
-            <VuiAvatar
-              src={performer.avatar}
-              alt={performer.name}
-              variant="circular"
-              size="md"
-              shadow="md"
-            />
-            <VuiBox flex={1}>
-              <VuiTypography variant="button" fontWeight="bold" color={darkMode ? "white" : "dark"}>
-                {performer.name}
-              </VuiTypography>
-              <VuiTypography variant="caption" color="text" fontWeight="regular">
-                {performer.achievement}
-              </VuiTypography>
+        >
+            <VuiBox mb={2}>
+                <VuiTypography variant="lg" fontWeight="bold" color={darkMode ? "white" : "dark"} textTransform="capitalize">
+                    Top Performers
+                </VuiTypography>
             </VuiBox>
-            <VuiBox
-              sx={{
-                background: `linear-gradient(${gradients.primary.deg}, ${gradients.primary.main}, ${gradients.primary.state})`,
-                borderRadius: "8px",
-                padding: "8px 16px",
-                minWidth: "60px",
-                textAlign: "center",
-              }}
-            >
-              <VuiTypography variant="button" fontWeight="bold" color={darkMode ? "white" : "dark"}>
-                {performer.score}
-              </VuiTypography>
+
+            <VuiBox display="flex" flexDirection="column" gap={2} flex={1}>
+                {performers.map((performer, index) => (
+                    <VuiBox
+                        key={index}
+                        display="flex"
+                        alignItems="center"
+                        gap={2}
+                        p={1.5}
+                        sx={{
+                            borderRadius: "12px",
+                            background: `linear-gradient(${gradients.cardContent.deg}, ${gradients.cardContent.main}, ${gradients.cardContent.state})`,
+                            transition: "transform 0.2s ease-in-out",
+                            "&:hover": {
+                                transform: "translateY(-2px)",
+                            },
+                        }}
+                    >
+                        <VuiAvatar
+                            src={performer.avatar}
+                            alt={performer.name}
+                            variant="circular"
+                            size="md"
+                            shadow="md"
+                        />
+                        <VuiBox flex={1}>
+                            <VuiTypography variant="button" fontWeight="bold" color={darkMode ? "white" : "dark"}>
+                                {performer.name}
+                            </VuiTypography>
+                            <VuiTypography variant="caption" color="text" fontWeight="regular">
+                                {performer.achievement}
+                            </VuiTypography>
+                        </VuiBox>
+                        <VuiBox
+                            sx={{
+                                background: `linear-gradient(${gradients.primary.deg}, ${gradients.primary.main}, ${gradients.primary.state})`,
+                                borderRadius: "8px",
+                                padding: "8px 16px",
+                                minWidth: "60px",
+                                textAlign: "center",
+                            }}
+                        >
+                            <VuiTypography variant="button" fontWeight="bold" color={darkMode ? "white" : "dark"}>
+                                {performer.score}
+                            </VuiTypography>
+                        </VuiBox>
+                    </VuiBox>
+                ))}
             </VuiBox>
-          </VuiBox>
-        ))}
-      </VuiBox>
-    </Card>
-  );
+        </Card>
+    );
 }
 
 export default TopPerformersCard;

@@ -98,12 +98,19 @@ const CourseGallery = () => {
                 sx={{
                     display: 'grid',
                     gridTemplateColumns: {
-                        xs: '1fr',                    // 1 column on mobile
-                        sm: 'repeat(2, 1fr)',         // 2 columns on tablet
-                        md: 'repeat(3, 1fr)',         // 3 columns on desktop
+                        xs: '1fr',                    // 1 column on mobile and iPhone 14 Pro Max
+                        sm: '1fr',                    // 1 column up to 450px
+                        md: 'repeat(2, 1fr)',         // 2 columns on tablet
+                        lg: 'repeat(3, 1fr)',         // 3 columns on desktop
                     },
                     gap: 3,
                     pb: 2,
+                    '@media (min-width: 451px)': {
+                        gridTemplateColumns: 'repeat(2, 1fr)',
+                    },
+                    '@media (min-width: 900px)': {
+                        gridTemplateColumns: 'repeat(3, 1fr)',
+                    },
                 }}
             >
                 {courses.map((course, index) => (

@@ -108,7 +108,18 @@ function ProfileHeader() {
         </VuiBox>
 
         {/* Stat Chips */}
-        <Grid container spacing={2}>
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            '@media (max-width: 450px)': {
+              '& .MuiGrid-item': {
+                maxWidth: '100%',
+                flexBasis: '100%',
+              }
+            }
+          }}
+        >
           <Grid item xs={12} sm={6} md={3}>
             <StatChip
               icon={<IoBookOutline size={12} />}
@@ -148,5 +159,3 @@ function ProfileHeader() {
 }
 
 export default ProfileHeader;
-
-

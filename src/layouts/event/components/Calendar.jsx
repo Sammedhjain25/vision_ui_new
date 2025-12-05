@@ -102,10 +102,10 @@ function Calendar({ mode = "single", selected, onSelect, defaultMonth, modifiers
       }}
     >
       {/* Header */}
-      <VuiBox 
-        display="flex" 
-        justifyContent="space-between" 
-        alignItems="center" 
+      <VuiBox
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
         mb={3}
         px={1}
       >
@@ -133,9 +133,9 @@ function Calendar({ mode = "single", selected, onSelect, defaultMonth, modifiers
       </VuiBox>
 
       {/* Day names */}
-      <VuiBox 
-        display="flex" 
-        gap={1} 
+      <VuiBox
+        display="flex"
+        gap={1}
         mb={2}
         justifyContent="space-between"
         px={0.5}
@@ -164,6 +164,14 @@ function Calendar({ mode = "single", selected, onSelect, defaultMonth, modifiers
           display: 'grid',
           gridTemplateColumns: 'repeat(7, 1fr)',
           gap: 1,
+          pl: { xs: 0, sm: 0 },
+          pr: { xs: 7, sm: 0 },
+          ml: { xs: -3, sm: 0 },
+          '@media (max-width: 450px)': {
+            pl: 0,
+            pr: 7,
+            ml: -3,
+          }
         }}
       >
         {days.map((date, index) => {
@@ -210,14 +218,14 @@ function Calendar({ mode = "single", selected, onSelect, defaultMonth, modifiers
                 <VuiTypography
                   variant="button"
                   color={isSelected ? 'white' : (darkMode ? 'text' : 'text')}
-                  fontSize="14px"
+                  fontSize="12px"
                   fontWeight={isToday ? 'bold' : 'regular'}
                   sx={!isSelected && !darkMode ? { color: '#000000' } : undefined}
                 >
                   {date.getDate()}
                 </VuiTypography>
               </VuiButton>
-              
+
               {/* Small colored dots for highlighted dates and today indicator */}
               <VuiBox
                 sx={{

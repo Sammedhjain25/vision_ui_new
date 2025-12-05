@@ -42,7 +42,7 @@ function Result() {
         py={{ xs: 1, sm: 1 }}
         px={{ xs: 1.5, sm: 1 }}
         sx={{
-          '@media (max-width: 400px)': {
+          '@media (max-width: 450px)': {
             px: 1.5,
             py: 1,
           }
@@ -52,7 +52,7 @@ function Result() {
           container
           spacing={{ xs: 1, sm: 3 }}
           sx={{
-            '@media (max-width: 400px)': {
+            '@media (max-width: 450px)': {
               '& .MuiGrid-item': {
                 paddingTop: '8px !important',
                 paddingLeft: '8px !important',
